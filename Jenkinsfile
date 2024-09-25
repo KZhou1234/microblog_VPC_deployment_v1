@@ -3,15 +3,22 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                sh '''#!/bin/bash
-                <enter your code here>
+		sh '''#!/bin/bash
+                python3.9 -m venv venv
+                source venv/bin/activate
+                pip install -r requirements.txt
+                pip install gunicorn pymysql cryptography
+                FLASK_APP=microblog.py
+                flask translate compile
+                flask db upgrade
                 '''
             }
         }
         stage ('Test') {
             steps {
-                sh '''#!/bin/bash
+		sh '''#!/bin/bash
                 source venv/bin/activate
+                export PYTHONPATH=$(pwd)
                 py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
                 '''
             }
