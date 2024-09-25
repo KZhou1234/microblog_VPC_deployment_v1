@@ -20,7 +20,7 @@ pipeline {
 		sudo apt install python3-pytest
                 source venv/bin/activate
                 export PYTHONPATH=$(pwd)
-		pytest
+			pytest --verbose --junit-xml test-reports/results.xml
                 '''
             }
             post {
