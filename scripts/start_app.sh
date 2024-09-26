@@ -23,4 +23,4 @@ export FLASK_APP=microblog.py
 flask translate compile
 flask db upgrade
 #gunicorn command
-gunicorn -b :5000 -w 4 microblog:app
+gunicorn -b :5000 -w 4 microblog:app --daemon
