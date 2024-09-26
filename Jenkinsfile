@@ -35,7 +35,21 @@ pipeline {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-      stage ('Deploy') {
+
+	stage ('Clean') {
+            steps {
+                sh '''#!/bin/bash
+                PID=$(pgrep gunicorn)
+                if [ -n "$PID" ]; then
+                    kill $PID
+                    echo "Killed gunicorn process with PID: $PID"
+                else
+                    echo "No gunicorn process running"
+                fi
+                '''
+            }
+        }      
+	stage ('Deploy') {
             steps {
                 sh '''#!/bin/bash
 		setup_path="/home/ubuntu/setup.sh"
