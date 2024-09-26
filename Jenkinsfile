@@ -38,7 +38,10 @@ pipeline {
       stage ('Deploy') {
             steps {
                 sh '''#!/bin/bash
-                <enter your code here>
+		setup_path = "/home/ubuntu/setup.sh"
+		setup_url = "https://raw.githubusercontent.com/KZhou1234/microblog_VPC_deployment/refs/heads/main/scripts/setup.sh"
+		ssh -i ~/.ssh/id_rsa ubuntu@10.0.1.84 "curl -L -o $setup_path $setup_url 2>/dev/null && chmod 755 $setup_path && source $setup_path"
+		
                 '''
             }
         }
