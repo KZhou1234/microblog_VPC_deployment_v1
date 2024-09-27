@@ -188,3 +188,13 @@ In workload 3, to "keep process alive", we used the process manager `systemctl` 
 ##  CONCLUSION
 
 From this workload, I have practiced how to consider the process from an automation perspective, gaining a better understanding of CI/CD and each stage of the pipeline. I practiced using Jenkins and writing Jenkinsfiles to manipulate each stage of the pipeline. I also practiced how to build a custom VPC along with subnets, associate route tables, and establish VPC Peering Connections. For the next workload, considering automation, scaling, and availability perspectives will be helpful. 
+
+
+## References
+
+* <a href="https://www.geeksforgeeks.org/source-command-in-linux-with-examples/" target="_blank">Enable auto-assign public IPv4 address in AWS</a>
+* <a href="https://stackoverflow.com/questions/71904283/enable-auto-assign-public-ipv4-address-in-aws" target="_blank">source Command in Linux with Examples</a>
+* <a href="https://www.qovery.com/blog/everything-you-need-to-know-about-deployment-environments/" target="_blank">Everything You Need to Know About Deployment Environments in 2023 </a>
+* No Code Generated or answer was by ChatGPT
+
+
