@@ -108,7 +108,13 @@ b) a "setup.sh" script that will run in the "Web_Server" that will SSH into the 
 
 ### Peering VPCs
 
-10. As the default VPC need to communicate with costum VPC, so we should build the connection by configuring Prring Connection which allow them communicating using private IP address.
+10. As the default VPC need to communicate with costum VPC, so we should build the connection by configuring Prring Connection which allow them communicating using private IP address. Then modify the route tables. The custum VPC route tables should add the CIDR of the default VPC. Also for the default VPC.
+
+The final resource for the custom VPC is
+<div align="center">
+	<img width="1476" alt="image" src="https://github.com/user-attachments/assets/958add8c-eccb-4615-894e-437722dcffaf">
+
+</div>
 
 ### Jenkinsfile 
 11. Create a Jenkinsfile that will 'Build' the application, 'Test' the application by running a pytest (you can re-use the test from WL3 or challenge yourself to create a new one), run the OWASP dependency checker, and then "Deploy" the application by SSH'ing into the "Web_Server" to run "setup.sh" (which would then run "start_app.sh").
