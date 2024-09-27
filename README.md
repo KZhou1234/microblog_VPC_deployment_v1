@@ -9,6 +9,8 @@
 <img width="821" alt="image" src="https://github.com/user-attachments/assets/ae8f2d4c-cc3b-4116-87af-f1abb15c376a">
 
 </div>
+
+
 ## PURPOSE
 
 In the previous workload, we explored how to build a multistage pipeline in Jenkins to implement CI/CD for the microblog application. However, the structure used was not the best practice for real-world industry projects. As the application source code, Jenkins, and monitoring tools were all aggregated into a single VPC. In this workload, we took a step closer to real-world web design architecture by using a custom VPC along with the default VPC in AWS to enhance the application’s security and availability. This is done in utilizing a version control system (GitHub) and an automation server (Jenkins) to implement a complete CI/CD pipeline. The actual application is separated into a properly configured custom VPC, with subnets and route tables associated with it. Finally, we use a separate server to monitor the application server, as in the previous practice, to ensure the application functions properly.
