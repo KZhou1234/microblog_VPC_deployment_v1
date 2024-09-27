@@ -5,7 +5,10 @@
 
 
 ## SYSTEM DIAGRAM
+<div align="center">
+<img width="821" alt="image" src="https://github.com/user-attachments/assets/ae8f2d4c-cc3b-4116-87af-f1abb15c376a">
 
+</div>
 ## PURPOSE
 
 In the previous workload, we explored how to build a multistage pipeline in Jenkins to implement CI/CD for the microblog application. However, the structure used was not the best practice for real-world industry projects. As the application source code, Jenkins, and monitoring tools were all aggregated into a single VPC. In this workload, we took a step closer to real-world web design architecture by using a custom VPC along with the default VPC in AWS to enhance the application’s security and availability. This is done in utilizing a version control system (GitHub) and an automation server (Jenkins) to implement a complete CI/CD pipeline. The actual application is separated into a properly configured custom VPC, with subnets and route tables associated with it. Finally, we use a separate server to monitor the application server, as in the previous practice, to ensure the application functions properly.
@@ -71,7 +74,7 @@ SSH into the application server.
 
 6. SSH into the "Jenkins" server and run `ssh-keygen`. Copy the public key that was created and append it into `~/.ssh/authorized_key` to allow SSH to the Web Server. 
 
-IMPORTANT: Test the connection by SSH'ing into the 'Web_Server' from the 'Jenkins' server.  This will also add the web server instance to the "list of known hosts"
+	IMPORTANT: Test the connection by SSH'ing into the 'Web_Server' from the 'Jenkins' server.  This will also add the web server instance to the "list of known hosts"
 
 Question: What does it mean to be a known host?  
 
@@ -93,17 +96,14 @@ b) a "setup.sh" script that will run in the "Web_Server" that will SSH into the 
 9. `start_app.sh` is a script that automates the creation of the virtual environment, installs dependencies, pulls source code from GitHub, sets environment variables, and runs the application.
 
 
-(HINT: run the scripts with "source" to avoid issues)
 
-Question: What is the difference between running scripts with the source command and running the scripts either by changing the permissions or by using the 'bash' interpreter?
+	Question: What is the difference between running scripts with the source command and running the scripts either by changing the permissions or by using the 'bash' interpreter?  
 
-IMPORTANT: Save these scripts in your GitHub Respository in a "scripts" folder.
+	Answer: `source` modifies the variables, settings, and other components in the script globally, persisting in the shell. In contrast, `./` as well as `bash` modifies the variables locally in the newly created shell.
 
-Answer: `source` modifies the variables, settings, and other components in the script globally, persisting in the shell. In contrast, `./` as well as `bash` modifies the variables locally in the newly created shell.
+	`source` is more commonly used for setting environment variables. The purpose of these two commands is to initialize or set the environment, so we can use `source` to run the scripts.
 
-`source` is more commonly used for setting environment variables. The purpose of these two commands is to initialize or set the environment, so we can use `source` to run the scripts.
-
-Using the `source` and `bash` commands does not require changing the file's permissions; only read permission is needed. This approach is safer in most cases to avoid unauthorized execution than using `./`.
+	Using the `source` and `bash` commands does not require changing the file's permissions; only read permission is needed. This approach is safer in most cases to avoid unauthorized execution than using `./`.
 
 
 ### Peering VPCs
@@ -150,7 +150,10 @@ In workload 3, to "keep process alive", we used the process manager `systemctl` 
 	 <img width="681" alt="image" src="https://github.com/user-attachments/assets/3f18ae32-84d6-472a-8439-3ba8ac9906c3">
 </div>
 2. Cannot connect to 5000 issue. This issue cause by run the application locally before, so the port is taken. It was solved by kill the Gunicorn run on port 5000.   
+<div align="center">
+	<img width="720" alt="image" src="https://github.com/user-attachments/assets/3d5eb0d7-af3a-483e-9d3f-61ab0ab94f30">
 
+</div>
 3. Deploy can not complete issue. This is solved by run the applicaiton in the background, then the deplu stage can complete.
 
 <div align="center">
@@ -167,12 +170,12 @@ In workload 3, to "keep process alive", we used the process manager `systemctl` 
 
 2. Does the infrastructure in this workload address these concerns?
 
-In this workload, the production and deployment environments are not isolated. The application running now still relies on one environment setting.
+	In this workload, the production and deployment environments are not isolated. The application running now still relies on one environment setting.
 
  
 4. Could the infrastructure created in this workload be considered that of a "good system"?  Why or why not?  How would you optimize this infrastructure to address these issues?
 
- This infrastructure is created to simulate the complete process of CI/CD, considering automation and security issues. However, it can be improved by isolating environments for each stage to enhance the infrastructure's high availability. This can also be improved from a resilience perspective because we currently only have one VPC holding the resources. The application server has full control of the application, which can be improved.
+ 	This infrastructure is created to simulate the complete process of CI/CD, considering automation and security issues. However, it can be improved by isolating environments for each stage to enhance the infrastructure's high availability. This can also be improved from a resilience perspective because we currently only have one VPC holding the resources. The application server has full control of the application, which can be improved.
 
 ##  CONCLUSION
 
