@@ -15,8 +15,15 @@ def app():
 def client(app):
         return app.test_client()
 
-def test_explore(client):
+def test_login(client):
         assert client
         response = client.get('/login')
         print(response)
         assert response.status_code == 200
+        
+def test_homepage(client):
+        assert client
+        response = client.get('/')
+        print(response)
+        assert response.status_code == 302
+#login required
